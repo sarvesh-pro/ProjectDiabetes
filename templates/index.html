@@ -1,103 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diabetes Prediction</title>
+  <!-- Materialize CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1 0 auto;
+    }
+
+    .input-field label {
+      font-weight: bold;
+      color: #f57c00;
+    }
+
+    .btn-large {
+      background-color: #f57c00;
+    }
+
+    .header {
+      font-weight: 700;
+    }
+
+    .header.light {
+      font-weight: 300;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .card-panel {
+      padding: 20px;
+    }
+  </style>
+</head>
 
 <body>
 
-
-
-  <div class="section no-pad-bot" id="index-banner">
+  <main>
     <div class="container">
-      <br><br>
-      <h1 class="header center orange-text">Diabetes Prediction</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">Predict the diabetes of people
-        <br>
-        </h5>
+      <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+          <br><br>
+          <h1 class="header center orange-text">Diabetes Prediction</h1>
+          <div class="row center">
+            <h5 class="header col s12 light">Predict the likelihood of diabetes based on various health metrics</h5>
+          </div>
+          <div class="row">
+            <form action='/predict' method="post" class="col s12">
+              <div class="card-panel">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input placeholder="Number of pregnancies" name="pregnancies" id="pregnancies" type="text" class="validate">
+                    <label for="pregnancies">Pregnancies</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="glucose" name="glucose" placeholder="Glucose level" type="text" class="validate">
+                    <label for="glucose">Glucose</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="bloodpressure" name="bloodpressure" placeholder="Blood pressure" type="text" class="validate">
+                    <label for="bloodpressure">Blood Pressure</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="skinthickness" name="skinthickness" placeholder="Skin thickness" type="text" class="validate">
+                    <label for="skinthickness">Skin Thickness</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="insulin" name="insulin" placeholder="Insulin level" type="text" class="validate">
+                    <label for="insulin">Insulin</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="bmi" name="bmi" placeholder="BMI" type="text" class="validate">
+                    <label for="bmi">BMI</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="pidegree" name="pidegree" placeholder="Pedigree function" type="text" class="validate">
+                    <label for="pidegree">Pedigree Function</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="age" name="age" placeholder="Age" type="text" class="validate">
+                    <label for="age">Age</label>
+                  </div>
+                </div>
+                <div class="row center">
+                  <button type="submit" class="btn-large waves-effect waves-light orange">Predict</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <br>
+          <div class="row center">
+            {{pred}}
+          </div>
+        </div>
       </div>
-
-              <div class="row">
-    <form action='/predict' method="post" class="col s12">
-      <div class="row">
-        <div class="input-field col s4">
-            <label for="first_name"><b>pregnancies</b></label>
-            <br>
-          <input placeholder="numberof pregnancies" name="pregnancies" id="first_name" type="text" class="validate">
-        </div>
-        <div class="input-field col s4">
-
-          <label for="last_name"><b>glucose </b></label>
-            <br>
-          <input id="last_name" name="glucose" placeholder="glucose"  type="text" class="validate">
-
-        </div>
-
-        <div class="input-field col s4">
-            <label for="_name"><b>bloodpressure</b></label>
-            <br>
-          <input id="_name" name="bloodpressure" placeholder="bloodpressure" type="text" class="validate">
-
-        </div>
-
-        <div class="input-field col s4">
-            <label for="_6name"><b>skinthickness</b></label>
-            <br>
-          <input id="_6name" name="skinthickness" placeholder="skinthickness" type="text" class="validate">
-
-        </div>
-
-       <div class="input-field col s4">
-            <label for="_1name"><b>insulin</b></label>
-            <br>
-          <input id="_1name" name="insulin" placeholder="insulin" type="text" class="validate">
-
-        </div>
-
-       <div class="input-field col s4">
-            <label for="_2name"><b>bmi</b></label>
-            <br>
-          <input id="_2name" name="bmi" placeholder="bmi" type="text" class="validate">
-
-        </div>
-
-       <div class="input-field col s4">
-            <label for="_3name"><b>pidegree</b></label>
-            <br>
-          <input id="_3name" name="pidegree" placeholder="pidegree" type="text" class="validate">
-
-        </div>
-
-       <div class="input-field col s4">
-            <label for="_4name"><b>age</b></label>
-            <br>
-          <input id="_4name" name="age" placeholder="age" type="text" class="validate">
-
-        </div>
-
-      </div>
-
-      <div class="row center">
-
-          <button type="submit" class="btn-large waves-effect waves-light orange">Predict </button>
-      </div>
-    </form>
-      </div>
-
-      <br>
-        {{pred}}<br>
-
     </div>
-  </div>
+  </main>
 
-
-    <br><br>
-  </div>
-  </div>>
-<!--  Scripts-->
+  <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src=".js/materialize.js"></script>
-  <script src="js/init.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
 
-  </body>
 </html>
-
